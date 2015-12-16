@@ -35,6 +35,9 @@ class ViewController: UIViewController
         case "+": performOperation { $0 + $1 }
         case "−": performOperation { $1 - $0 }
         case "√": performSingleOperation {sqrt($0) }
+        case "sin": performSingleOperation { sin($0) }
+        case "cos": performSingleOperation { cos($0) }
+        case "±": performSingleOperation { $0 * -1 }
         default: break
         }
     }
@@ -60,6 +63,12 @@ class ViewController: UIViewController
         userIsInTheMiddleOfTypingANumber = false
         operandStack.append(displayValue)
         print("operandStack = \(operandStack)")
+    }
+    
+    @IBAction func  clear()
+    {
+        operandStack.removeAll(keepCapacity: false)
+        display.text = "0"
     }
     
     var displayValue: Double    {
